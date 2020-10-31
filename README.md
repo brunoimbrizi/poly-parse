@@ -1,4 +1,5 @@
-# poly-parse
+poly-parse
+==========
 
 Parses a .poly file from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html) and returns a JSON.
 
@@ -21,19 +22,21 @@ polyparse('./A.poly', { download: true })
 	.then(data => console.log(data))
 	.catch(err => console.log(err))
 ```
-Returns a `Promise` with the parsed object.
+Returns a `Promise` with the parsed object:
 
 ```js
 {
   numberofpoints: 29,
-  pointlist: [0.2, -0.7764, 0.22, -0.7732 ...],
+  pointlist: [[0.2, -0.7764], [0.22, -0.7732] ...],
   pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...]
   ...
 }
 ```
 
-For convenience the property names in the output are the same as in `struct triangulateio` from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
+For convenience the property names in the output are the same as in `struct triangulateio` defined in `triangle.h` from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
+
 Indices in a .poly file can be zero-based or one-based, but the parsed result is always zero-based.
+
 
 ## Usage
 
@@ -42,13 +45,18 @@ Indices in a .poly file can be zero-based or one-based, but the parsed result is
 `poly` Can be either the content of the .poly file as a string, or a path / URL, or a [File](https://developer.mozilla.org/en-US/docs/Web/API/File). 
 
 `options`
-- `download` set to `true` if the first argument is a path or a URL.
+- `flat` (default `false`)
+  - flatten nested arrays
+  - i.e. `pointlist: [[x, y], [x, y]]` becomes `pointlist: [x, y, x, y]`
+- `download` (default `false`)
+  - set to `true` if the first argument `poly` is a path or a URL
 - All the other [config options from Papa Parse](https://www.papaparse.com/docs#config).
 
 
 ## See Also
 
 - [Triangle - A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator](https://www.cs.cmu.edu/~quake/triangle.html) - Jonathan Shewchuk
+
 
 ## License
 

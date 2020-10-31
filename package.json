@@ -1,0 +1,30 @@
+{
+  "name": "poly-parse",
+  "version": "1.0.0",
+  "description": "Parses a .poly file and returns a JSON.",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Bruno Imbrizi",
+    "url": "https://github.com/brunoimbrizi"
+  },
+  "dependencies": {
+    "papaparse": "5.3.0"
+  },
+  "scripts": {
+  },
+  "keywords": [
+    "triangle",
+    "triangulate",
+    "poly",
+    "pslg"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brunoimbrizi/poly-parse.git"
+  },
+  "homepage": "https://github.com/brunoimbrizi/poly-parse",
+  "bugs": {
+    "url": "https://github.com/brunoimbrizi/poly-parse/issues"
+  }
+}

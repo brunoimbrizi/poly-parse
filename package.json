@@ -1,7 +1,7 @@
 {
   "name": "poly-parse",
-  "version": "1.0.1",
-  "description": "Parses a .poly file and returns a JSON.",
+  "version": "1.0.2",
+  "description": "Parses .poly or .node files and returns a JSON.",
   "main": "index.js",
   "license": "MIT",
   "author": {
@@ -11,9 +11,9 @@
   "dependencies": {
     "papaparse": "5.3.0"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [
+    "delaunay",
     "triangle",
     "triangulate",
     "poly",
@@ -26,5 +26,8 @@
   "homepage": "https://github.com/brunoimbrizi/poly-parse",
   "bugs": {
     "url": "https://github.com/brunoimbrizi/poly-parse/issues"
+  },
+  "devDependencies": {
+    "normalize-path-scale": "^2.0.0"
   }
 }

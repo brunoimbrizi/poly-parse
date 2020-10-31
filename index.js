@@ -1,47 +1,44 @@
 const Papa = require('papaparse');
 
-const polyparse = (poly, opt) => {
-	return new Promise((resolve, reject) => {
+const polyparse = (poly, opt = {}) => {
+	if (typeof poly !== 'string') {
+    throw new TypeError('poly-parse first parameter must be a string')
+  }
 
-		const { flat } = opt;
-		const params = {
-			dynamicTyping: true,
-			skipEmptyLines: true,
-			comments: true,
-			delimiter: ' ',
-			...opt
-		};
+	const params = {
+		...opt,
+		dynamicTyping: true,
+		skipEmptyLines: true,
+		comments: true,
+		delimiter: ' ',
+		download: false,
+	};
 
-		// async
-		if (poly instanceof File || opt.download) {
-			Papa.parse(poly, {
-				complete: (results) => {
-					if (results.errors.length) reject(results);
-					else resolve(parse(results, flat));
-				},
-				error: (results) => {
-					reject(results);
-				},
-				...params
-			});
-		}
+	const trimmed = removeWhitespaces(poly);
+	const results = Papa.parse(trimmed, params);
 
-		// sync
-		else {
-			const results = Papa.parse(poly);
+	if (results.errors.length) {
+		console.log(results);
+		return null;
+	}
 
-			if (results.errors.length) reject(results);
-			else resolve(parse(results, flat));
-		}
-	});
+	if (!results.data.length) {
+		throw new Error('poly-parse not enough data in the poly file')
+	}
+
+	return parse(results, opt.flat);
+};
+
+const removeWhitespaces = (str) => {
+	return str.replace(/ +| +$/gm, ' ').replace(/^ +| +$/gm, '');
 };
 
 const getGroup = (arr, length, flat) => {
 	if (flat || length < 2) return arr;
 	
-	const grup = [];
-	arr.push(grup);
-	return grup;
+	const grp = [];
+	arr.push(grp);
+	return grp;
 };
 
 const parse = (results, flat = false) => {
@@ -88,6 +85,19 @@ const parse = (results, flat = false) => {
 		// only one marker per point, no grouping
 		for (let j = 0; j < numberofpointmarkers; j++) {
 			pointmarkerlist.push(line[dimension + numberofpointattributes + j + 1]);
+		}
+	}
+
+
+	// .node files
+	// return early if data ends here
+	if (data.length <= index + numberofpoints) {
+		return {
+			pointlist,
+			pointattributelist,
+			pointmarkerlist,
+			numberofpoints,
+			numberofpointattributes,
 		}
 	}
 

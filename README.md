@@ -38,10 +38,9 @@ Output:
 }
 ```
 
-For convenience the property names in the output are the same as in `struct triangulateio` defined in `triangle.h` from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
+## Demo
 
-Indices in a .poly file can be zero-based or one-based, but the parsed result is *always zero-based*.
-
+[poly-parse demo](https://brunoimbrizi.github.io/poly-parse/demo/)
 
 ## Usage
 
@@ -52,6 +51,12 @@ Indices in a .poly file can be zero-based or one-based, but the parsed result is
 - `options`
   - `flat` boolean to flatten nested arrays i.e. `[[x, y], [x, y]]` becomes `[x, y, x, y]`
   - all the [config options from Papa Parse](https://www.papaparse.com/docs#config)
+
+**Returns** an object with the parsed properties.
+
+For convenience the parsed output uses the same property names as  `struct triangulateio` defined in `triangle.h` from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
+
+Indices in a .poly file can be zero-based or one-based, but the parsed result is *always zero-based*.
 
 
 ## See Also

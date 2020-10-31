@@ -1,11 +1,13 @@
 poly-parse
 ==========
 
-Parses .poly or .node files from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
+Parses .poly files from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
 
 > A .poly file represents a PSLG, as well as some additional information. PSLG stands for Planar Straight Line Graph, a term familiar to computational geometers. By definition, a PSLG is just a list of vertices and segments. A .poly file can also contain information about holes and concavities, as well as regional attributes and constraints on the areas of triangles.
 
 Full description of the [.poly file format](https://www.cs.cmu.edu/~quake/triangle.poly.html).
+
+It can also parse [.node files](https://www.cs.cmu.edu/~quake/triangle.node.html) since they represent a subset of .poly.
 
 The file is parsed with [Papa Parse](https://www.npmjs.com/package/papaparse).
 
@@ -19,10 +21,10 @@ npm install poly-parse
 const polyparse = require('poly-parse');
 
 fetch('./A.poly')
-	.then(result => result.text())
-	.then(result => {
-		console.log(polyparse(result));
-	});
+  .then(result => result.text())
+  .then(result => {
+    console.log(polyparse(result));
+  });
 ```
 Output:
 
@@ -45,13 +47,11 @@ Indices in a .poly file can be zero-based or one-based, but the parsed result is
 
 #### `polyparse(poly, options)`
 
-`poly` string with the content of the .poly file
+- `poly` string with the content of the .poly file
 
-`options`
-- `flat` (default `false`)
-  - flatten nested arrays
-  - i.e. `pointlist: [[x, y], [x, y]]` becomes `pointlist: [x, y, x, y]`
-- all the [config options from Papa Parse](https://www.papaparse.com/docs#config).
+- `options`
+  - `flat` boolean to flatten nested arrays i.e. `[[x, y], [x, y]]` becomes `[x, y, x, y]`
+  - all the [config options from Papa Parse](https://www.papaparse.com/docs#config)
 
 
 ## See Also

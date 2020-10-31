@@ -8,6 +8,22 @@ canvas.height = 640;
 
 const ctx = canvas.getContext('2d');
 
+// init select
+const select = document.querySelector('select');
+select.addEventListener('change', (e) => {
+	loadPoly(e.target.value);
+});
+
+const loadPoly = (poly) => {
+	fetch(poly)
+		.then(result => result.text())
+		.then(result => {
+			const data = polyparse(result);
+			console.log(data);
+			draw(data);
+		});
+};
+
 const scale = (points, sx, sy) => {
 	for (let i = 0; i < points.length; i++) {
 		points[i][0] *= sx;
@@ -57,17 +73,4 @@ const draw = (data) => {
   ctx.restore();
 };
 
-const poly = './A.poly';
-// const poly = './guitar.poly';
-// const poly = './la.poly';
-// const poly = './airfoil_exterior.poly';
-// const poly = './square_circle_hole.poly';
-// const poly = './spiral.node';
-
-fetch(poly)
-	.then(result => result.text())
-	.then(result => {
-		const data = polyparse(result);
-		console.log(data);
-		draw(data);
-	});
+loadPoly(select.value);

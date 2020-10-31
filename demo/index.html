@@ -3,16 +3,42 @@
 <head>
 	<title>poly-parse</title>
 	<style type="text/css">
+		body {
+			background: #eee;
+		}
 		canvas {
 			position: absolute;
+			top: 0;
+			left: 0;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+		}
+		.info, select {
+			font-family: sans-serif;
+			font-size: 14px;
+		}
+		span {
+			display: block;
+			margin: 10px 0;
 		}
 	</style>
 </head>
 <body>
 	<canvas></canvas>
+	<div class="info">
+		<a href="https://github.com/brunoimbrizi/poly-parse"><h3>poly-parse</h3></a>
+		<span>Open the Console for the parsed object</span>
+		<select>
+			<option value="./A.poly" selected>A.poly</option>
+			<option value="./airfoil_exterior.poly">airfoil_exterior.poly</option>
+			<option value="./guitar.poly">guitar.poly</option>
+			<option value="./la.poly">la.poly</option>
+			<option value="./mesh02.poly">mesh02.poly</option>
+			<option value="./spiral.node">spiral.node</option>
+			<option value="./square_circle_hole.poly">square_circle_hole.poly</option>
+		</select>
+	</div>
 	<script src="bundle.js" async></script>
 </body>
 </html>

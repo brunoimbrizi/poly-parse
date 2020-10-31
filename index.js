@@ -5,6 +5,8 @@ const polyparse = (poly, opt) => {
 
 		const params = {
 			dynamicTyping: true,
+			skipEmptyLines: true,
+			comments: true,
 			delimiter: ' ',
 			...opt
 		};

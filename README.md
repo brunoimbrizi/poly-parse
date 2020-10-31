@@ -4,9 +4,9 @@ Parses a .poly file from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html)
 
 > A .poly file represents a PSLG, as well as some additional information. PSLG stands for Planar Straight Line Graph, a term familiar to computational geometers. By definition, a PSLG is just a list of vertices and segments. A .poly file can also contain information about holes and concavities, as well as regional attributes and constraints on the areas of triangles.
 
-[.poly file format](https://www.cs.cmu.edu/~quake/triangle.poly.html)
+Full description of the [.poly file format](https://www.cs.cmu.edu/~quake/triangle.poly.html).
 
-The text file is parsed with [Papa Parse](https://www.npmjs.com/package/papaparse).
+The file is parsed with [Papa Parse](https://www.npmjs.com/package/papaparse).
 
 ## Install
 ```
@@ -33,7 +33,7 @@ Returns a `Promise` with the parsed object.
 ```
 
 For convenience the property names in the output are the same as in `struct triangulateio` from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
-
+Indices in a .poly file can be zero-based or one-based, but the parsed result is always zero-based.
 
 ## Usage
 

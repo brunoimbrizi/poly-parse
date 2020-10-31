@@ -15,19 +15,21 @@ npm install poly-parse
 
 ## Example
 ```js
-const polyparse = require('./index.js');
+const polyparse = require('poly-parse');
 
 polyparse('./A.poly', { download: true })
 	.then(data => console.log(data))
 	.catch(err => console.log(err))
+```
+Returns a `Promise` with the parsed object.
 
-// outputs
-// {
-//   numberofpoints: 29,
-//   pointlist: [0.2, -0.7764, 0.22, -0.7732 ...],
-// 	 pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...]
-//   ...
-// }
+```js
+{
+  numberofpoints: 29,
+  pointlist: [0.2, -0.7764, 0.22, -0.7732 ...],
+  pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...]
+  ...
+}
 ```
 
 For convenience the property names in the output are the same as in `struct triangulateio` from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
@@ -37,17 +39,17 @@ For convenience the property names in the output are the same as in `struct tria
 
 #### `polyparse(poly, options)`
 
-Returns a `Promise` with the parsed object.
-
 `poly` Can be either the content of the .poly file as a string, or a path / URL, or a [File](https://developer.mozilla.org/en-US/docs/Web/API/File). 
 
 `options`
 - `download` set to `true` if the first argument is a path or a URL.
-
-Other options are passed to Papa Parse. See all [config options](https://www.papaparse.com/docs#config).
+- All the other [config options from Papa Parse](https://www.papaparse.com/docs#config).
 
 
 ## See Also
 
 - [Triangle - A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator](https://www.cs.cmu.edu/~quake/triangle.html) - Jonathan Shewchuk
 
+## License
+
+MIT, see [LICENSE.md](LICENSE.md) for details.

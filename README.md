@@ -60,4 +60,4 @@ Indices in a .poly file can be zero-based or one-based, but the parsed result is
 
 ## License
 
-MIT, see [LICENSE.md](LICENSE.md) for details.
+MIT, see [LICENSE](LICENSE) for details.

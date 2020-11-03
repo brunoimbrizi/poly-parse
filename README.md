@@ -30,11 +30,18 @@ Output:
 
 ```js
 {
-  numberofpoints: 29,
+  holelist: [[0.47, -0.5]],
+  numberofholes: 1,
   numberofpointattributes: 1,
+  numberofpoints: 29,
+  numberofregions: 0,
+  numberofsegments: 29,
+  pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...],
   pointlist: [[0.2, -0.7764], [0.22, -0.7732] ...],
-  pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...]
-  ...
+  pointmarkerlist: [],
+  regionlist: [],
+  segmentlist: [[28, 0], [0, 1] ...],
+  segmentmarkerlist: []
 }
 ```
 
@@ -49,7 +56,7 @@ Output:
 - `poly` string with the content of the .poly file
 
 - `options`
-  - `flat` boolean to flatten nested arrays i.e. `[[x, y], [x, y]]` becomes `[x, y, x, y]`
+  - `flat` (default `false`) flatten nested arrays i.e. `[[x, y], [x, y]]` becomes `[x, y, x, y]`
   - all the [config options from Papa Parse](https://www.papaparse.com/docs#config)
 
 **Returns** an object with the parsed properties.

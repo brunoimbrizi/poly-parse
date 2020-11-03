@@ -1,6 +1,6 @@
 {
   "name": "poly-parse",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Parses .poly or .node files and returns a JSON.",
   "main": "index.js",
   "license": "MIT",

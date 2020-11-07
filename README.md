@@ -34,14 +34,14 @@ Output:
   pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...],
   pointmarkerlist: [],
   segmentlist: [[28, 0], [0, 1] ...],
-  segmentmarkerlist: []
+  segmentmarkerlist: [],
   holelist: [[0.47, -0.5]],
   regionlist: [],
   numberofpoints: 29,
   numberofpointattributes: 1,
   numberofsegments: 29,
   numberofholes: 1,
-  numberofregions: 0,
+  numberofregions: 0
 }
 ```
 
@@ -51,11 +51,11 @@ Output:
 
 ## Usage
 
-#### `polyparse(poly, options)`
+### `polyparse(poly, options)`
 
-- `poly` string with the content of the .poly file
+`poly` string with the content of the .poly file
 
-- `options`
+`options`
   - `flat` (default `false`) flatten nested arrays i.e. `[[x, y], [x, y]]` becomes `[x, y, x, y]`
   - all the [config options from Papa Parse](https://www.papaparse.com/docs#config)
 

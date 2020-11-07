@@ -1,6 +1,6 @@
 {
   "name": "poly-parse",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Parses .poly or .node files and returns a JSON.",
   "main": "index.js",
   "license": "MIT",
@@ -11,7 +11,17 @@
   "dependencies": {
     "papaparse": "5.3.0"
   },
-  "scripts": {},
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "normalize-path-scale": "^2.0.0",
+    "tinyify": "^3.0.0"
+  },
+  "scripts": {
+    "demo": "budo demo/:bundle.js --live --dir demo/",
+    "build": "browserify demo/index.js -t babelify -p tinyify -o demo/bundle.js"
+  },
   "keywords": [
     "delaunay",
     "triangle",
@@ -26,8 +36,5 @@
   "homepage": "https://github.com/brunoimbrizi/poly-parse",
   "bugs": {
     "url": "https://github.com/brunoimbrizi/poly-parse/issues"
-  },
-  "devDependencies": {
-    "normalize-path-scale": "^2.0.0"
   }
 }

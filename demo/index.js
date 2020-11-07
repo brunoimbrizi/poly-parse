@@ -44,6 +44,7 @@ const draw = (data) => {
 	ctx.save();
 	ctx.translate(canvas.width * 0.5, canvas.height * 0.5);
 	ctx.fillStyle = '#000';
+	ctx.lineWidth = 2;
 	
 	// draw points
   let x, y;
@@ -51,7 +52,7 @@ const draw = (data) => {
     x = points[i][0];
     y = points[i][1];
     ctx.beginPath();
-    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.arc(x, y, 3, 0, Math.PI * 2);
     ctx.fill();
   }
 

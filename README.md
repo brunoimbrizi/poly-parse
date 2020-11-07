@@ -7,7 +7,7 @@ Parses .poly files from [Triangle](https://www.cs.cmu.edu/~quake/triangle.html).
 
 Full description of the [.poly file format](https://www.cs.cmu.edu/~quake/triangle.poly.html).
 
-It can also parse [.node files](https://www.cs.cmu.edu/~quake/triangle.node.html) since they represent a subset of .poly.
+It can also parse [.node files](https://www.cs.cmu.edu/~quake/triangle.node.html) since they are a subset of .poly.
 
 The file is parsed with [Papa Parse](https://www.npmjs.com/package/papaparse).
 
@@ -30,18 +30,18 @@ Output:
 
 ```js
 {
-  holelist: [[0.47, -0.5]],
-  numberofholes: 1,
-  numberofpointattributes: 1,
-  numberofpoints: 29,
-  numberofregions: 0,
-  numberofsegments: 29,
-  pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...],
   pointlist: [[0.2, -0.7764], [0.22, -0.7732] ...],
+  pointattributelist: [-0.57, -0.55, -0.51, -0.53 ...],
   pointmarkerlist: [],
-  regionlist: [],
   segmentlist: [[28, 0], [0, 1] ...],
   segmentmarkerlist: []
+  holelist: [[0.47, -0.5]],
+  regionlist: [],
+  numberofpoints: 29,
+  numberofpointattributes: 1,
+  numberofsegments: 29,
+  numberofholes: 1,
+  numberofregions: 0,
 }
 ```
 

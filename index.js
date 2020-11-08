@@ -1,4 +1,6 @@
 const Papa = require('papaparse');
+const normalizePath = require('normalize-path-scale');
+const getBounds = require('bound-points');
 
 const polyparse = (poly, opt = {}) => {
 	if (typeof poly !== 'string') {
@@ -26,7 +28,7 @@ const polyparse = (poly, opt = {}) => {
 		throw new Error('poly-parse not enough data in the poly file')
 	}
 
-	return parse(results, opt.flat);
+	return parse(results, opt);
 };
 
 const removeWhitespaces = (str) => {
@@ -41,7 +43,10 @@ const getGroup = (arr, length, flat) => {
 	return grp;
 };
 
-const parse = (results, flat = false) => {
+const parse = (results, {
+	flat = false,
+	normalize = false,
+} = {}) => {
 	const data = results.data;
 
 	const pointlist = [];
@@ -52,10 +57,10 @@ const parse = (results, flat = false) => {
 	const holelist = [];
 	const regionlist = [];
 
+	let group, bounds;
 
 	// pointlist
 	let index = 0;
-	let group;
 
 	const numberofpoints = data[index][0];
 	const dimension = data[index][1];
@@ -88,6 +93,10 @@ const parse = (results, flat = false) => {
 		}
 	}
 
+	if (normalize) {
+		bounds = getBounds(pointlist);
+		normalizePath(pointlist, bounds);
+	}
 
 	// .node files
 	// return early if data ends here
@@ -165,6 +174,9 @@ const parse = (results, flat = false) => {
 		}
 	}
 
+	if (normalize) {
+		normalizePath(holelist, bounds);
+	}
 
 	return {
 		pointlist,

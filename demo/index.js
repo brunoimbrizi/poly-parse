@@ -1,5 +1,4 @@
 const polyparse = require('../index.js');
-const normalize = require('normalize-path-scale');
 
 // init canvas
 const canvas = document.querySelector('canvas');
@@ -18,13 +17,15 @@ const loadPoly = (poly) => {
 	fetch(poly)
 		.then(result => result.text())
 		.then(result => {
-			const data = polyparse(result);
-			console.log(data);
+			const data = polyparse(result, { normalize: true });
 			draw(data);
+			console.log(data);
 		});
 };
 
 const scale = (points, sx, sy) => {
+	if (!points) return;
+	
 	for (let i = 0; i < points.length; i++) {
 		points[i][0] *= sx;
 		points[i][1] *= sy;
@@ -32,11 +33,12 @@ const scale = (points, sx, sy) => {
 };
 
 const draw = (data) => {
-	const points = data.pointlist.concat();
+	const points = data.pointlist;
 	const segments = data.segmentlist;
+	const holes = data.holelist;
 
-	normalize(points);
 	scale(points, canvas.width * 0.4, canvas.height * -0.4);
+	scale(holes, canvas.width * 0.4, canvas.height * -0.4);
 
 	ctx.fillStyle = '#eee';
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -56,7 +58,6 @@ const draw = (data) => {
     ctx.fill();
   }
 
-
   // draw segments
   if (segments) {
 	  let a, b;
@@ -68,6 +69,23 @@ const draw = (data) => {
 		  ctx.moveTo(points[a][0], points[a][1]);
 	    ctx.lineTo(points[b][0], points[b][1]);
 	  	ctx.stroke();
+	  }
+	}
+
+	// draw holes
+	if (holes) {
+		ctx.fillStyle = 'red';
+		for (let i = 0; i < holes.length; i++) {
+			x = holes[i][0];
+	    y = holes[i][1];
+
+	    ctx.save();
+	    ctx.translate(x, y);
+	    ctx.rotate(Math.PI * -0.25);
+	    ctx.fillRect(-1, -6, 2, 12);
+	    ctx.rotate(Math.PI * 0.5);
+	    ctx.fillRect(-1, -6, 2, 12);
+	    ctx.restore();
 	  }
 	}
 

@@ -53,10 +53,11 @@ Output:
 
 ### `polyparse(poly, options)`
 
-`poly` string with the content of the .poly file
+- `poly` string with the content of the .poly file
 
-`options`
-  - `flat` (default `false`) flatten nested arrays i.e. `[[x, y], [x, y]]` becomes `[x, y, x, y]`
+- `options`
+  - `flat` (default `false`) flatten nested arrays i.e. `[[x, y], [x, y]]` into `[x, y, x, y]`
+  - `normalize` (default `false`) normalizes path to its bounding box, returns points in the `-1.0 ... 1.0` range
   - all the [config options from Papa Parse](https://www.papaparse.com/docs#config)
 
 **Returns** an object with the parsed properties.
@@ -69,7 +70,8 @@ Indices in a .poly file can be zero-based or one-based, but the parsed result is
 ## See Also
 
 - [Triangle - A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator](https://www.cs.cmu.edu/~quake/triangle.html) - Jonathan Shewchuk
-
+- [normalize-path-scale](https://github.com/mattdesl/normalize-path-scale)
+- [bound-points](https://github.com/mikolalysenko/bound-points)
 
 ## License
 

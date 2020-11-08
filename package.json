@@ -1,6 +1,6 @@
 {
   "name": "poly-parse",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Parses .poly or .node files and returns a JSON.",
   "main": "index.js",
   "license": "MIT",
@@ -9,13 +9,13 @@
     "url": "https://github.com/brunoimbrizi"
   },
   "dependencies": {
+    "normalize-path-scale": "^2.0.0",
     "papaparse": "5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
-    "normalize-path-scale": "^2.0.0",
     "tinyify": "^3.0.0"
   },
   "scripts": {

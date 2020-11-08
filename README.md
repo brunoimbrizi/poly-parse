@@ -60,6 +60,7 @@ Output:
 
 - `options`
   - `flat` (default `false`) flatten nested arrays i.e. `[[x, y], [x, y]]` into `[x, y, x, y]`
+  - `flipY` (default `false`) multiplies y coordinates by -1
   - `normalize` (default `false`) normalizes path to its bounding box, returns points in the `-1.0 ... 1.0` range
   - all the [config options from Papa Parse](https://www.papaparse.com/docs#config)
 
@@ -73,8 +74,7 @@ Indices in a .poly file can be zero-based or one-based, but the parsed result is
 ## See Also
 
 - [Triangle - A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator](https://www.cs.cmu.edu/~quake/triangle.html) - Jonathan Shewchuk
-- [normalize-path-scale](https://github.com/mattdesl/normalize-path-scale)
-- [bound-points](https://github.com/mikolalysenko/bound-points)
+- [svg-to-poly](https://github.com/brunoimbrizi/svg-to-poly)
 
 ## License
 

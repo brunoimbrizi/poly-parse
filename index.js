@@ -46,16 +46,17 @@ const getGroup = (arr, length, flat) => {
 const parse = (results, {
 	flat = false,
 	normalize = false,
+	flipY = false,
 } = {}) => {
 	const data = results.data;
 
-	const pointlist = [];
-	const pointattributelist = [];
-	const pointmarkerlist = [];
-	const segmentlist = [];
-	const segmentmarkerlist = [];
-	const holelist = [];
-	const regionlist = [];
+	let pointlist = [];
+	let pointattributelist = [];
+	let pointmarkerlist = [];
+	let segmentlist = [];
+	let segmentmarkerlist = [];
+	let holelist = [];
+	let regionlist = [];
 
 	let group, bounds;
 
@@ -74,14 +75,14 @@ const parse = (results, {
 		const line = data[i];
 		
 		// group points in pairs (or dimension)
-		group = getGroup(pointlist, dimension, flat);
+		group = getGroup(pointlist, dimension);
 
 		for (let j = 0; j < dimension; j++) {
 			group.push(line[j + 1]);
 		}
 
 		// group point attributes if more than 1
-		group = getGroup(pointattributelist, numberofpointattributes, flat);
+		group = getGroup(pointattributelist, numberofpointattributes);
 		
 		for (let j = 0; j < numberofpointattributes; j++) {
 			group.push(line[dimension + j + 1]);
@@ -93,9 +94,20 @@ const parse = (results, {
 		}
 	}
 
+	if (flipY) {
+		for (let i = 0; i < pointlist.length; i++) {
+			pointlist[i][1] *= -1;
+		}
+	}
+
 	if (normalize) {
 		bounds = getBounds(pointlist);
 		normalizePath(pointlist, bounds);
+	}
+
+	if (flat) {
+		pointlist = pointlist.flat();
+		pointattributelist = pointattributelist.flat();
 	}
 
 	// .node files
@@ -123,7 +135,7 @@ const parse = (results, {
 		const line = data[i];
 
 		// group segments in pairs
-		group = getGroup(segmentlist, 2, flat);
+		group = getGroup(segmentlist, 2);
 
 		for (let j = 0; j < 2; j++) {
 			// convert to zero-based
@@ -148,7 +160,7 @@ const parse = (results, {
 		const line = data[i];
 
 		// group holes in pairs (or dimension)
-		group = getGroup(holelist, dimension, flat);
+		group = getGroup(holelist, dimension);
 
 		for (let j = 0; j < dimension; j++) {
 			group.push(line[j + 1]);
@@ -167,16 +179,29 @@ const parse = (results, {
 		const line = data[i];
 
 		// group regions (x, y, attribute, maximum area)
-		group = getGroup(regionlist, dimension, flat);
+		group = getGroup(regionlist, dimension);
 
 		for (let j = 0; j < 4; j++) {
 			group.push(line[j + 1]);
 		}
 	}
 
+	if (flipY) {
+		for (let i = 0; i < holelist.length; i++) {
+			holelist[i][1] *= -1;
+		}
+	}
+
 	if (normalize) {
 		normalizePath(holelist, bounds);
 	}
+
+	if (flat) {
+		segmentlist = segmentlist.flat();
+		holelist = holelist.flat();
+		regionlist = regionlist.flat();
+	}
+
 
 	return {
 		pointlist,

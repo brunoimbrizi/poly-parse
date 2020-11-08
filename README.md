@@ -11,6 +11,9 @@ It can also parse [.node files](https://www.cs.cmu.edu/~quake/triangle.node.html
 
 The file is parsed with [Papa Parse](https://www.npmjs.com/package/papaparse).
 
+[![demo](https://user-images.githubusercontent.com/880280/98482770-7b0eaf80-21fb-11eb-870e-fb30791b4d30.png)](https://brunoimbrizi.github.io/poly-parse/demo/)
+
+
 ## Install
 ```
 npm install poly-parse
